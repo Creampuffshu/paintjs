@@ -17,7 +17,7 @@ ctx.strokeStyle = INITIAL_COLOR;
 ctx.fillStyle=INITIAL_COLOR;
 ctx.lineWidth = 2.5;
 
-
+let currentColorBtn = null;
 
 let painting = false;
 let filling = false;
@@ -44,9 +44,15 @@ function onMouseMove(event){
     }
     
 }
-
 function handleColorClick(event){
-    const color = event.target.style.backgroundColor;
+    if(currentColorBtn!==null){
+        currentColorBtn.style.boxShadow="";
+    }
+    currentColorBtn = event.target;
+   
+    console.dir(currentColorBtn);
+    const color = currentColorBtn.style.backgroundColor;
+    currentColorBtn.style.boxShadow=`0px 0px 15px ${color}`;
     ctx.strokeStyle = color;
     ctx.fillStyle = color;
 }
